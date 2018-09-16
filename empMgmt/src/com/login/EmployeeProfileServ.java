@@ -64,15 +64,20 @@ public class EmployeeProfileServ extends HttpServlet {
 	        
 	        RequestDispatcher dispatcher = request.getServletContext()
 	                .getRequestDispatcher("/employeeViewDetail.jsp");
-	        dispatcher.forward(request, response);
+	        dispatcher.include(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+	}
+	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("in put");
+		//System.out.println(req.getParameter("data"));
 	}
 
 }

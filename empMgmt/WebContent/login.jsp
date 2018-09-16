@@ -18,35 +18,40 @@
 </script>
 </head>
 <body>
- <jsp:include page="header.jsp"></jsp:include>
- <jsp:include page="menu.jsp"></jsp:include>
- 
- 
-<div class="container">
-<h1 class="page-header">Login Page</h1>
-<%-- To display the value of attribute <p>displayError = ${ displayError }</p> --%>
-<div class="login-error-alert alert alert-danger" role="alert" style="display:${displayError};">
-	<p id="p1">${ errorMessage } User email : ${ userData.userName }</p>
-</div>
-        <form class="form-inline" method="POST" action="${pageContext.request.contextPath}/login">
-        
-        <div class="form-group">
-                  <label>User Name</label>
-                  <input type="text" class="form-control" placeholder="email id" name="userName" value= "${user.emailid}">
-                </div>
-                <div class="form-group">
-                  <label>Password</label>
-                  <input type="password" class="form-control" placeholder="password" name="password" value= "${user.password}">
-                </div>
-                <div>
-		<button type="submit" class="btn btn-success login">Login</button>
+	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="menu.jsp"></jsp:include>
+
+
+	<div class="container">
+		<h1 class="page-header">Login Page</h1>
+		<%-- To display the value of attribute <p>displayError = ${ displayError }</p> --%>
+		<div class="login-error-alert alert alert-danger" role="alert"
+			style="display:${displayError};">
+			<p id="p1">${ errorMessage }Useremail : ${ user.userName }</p>
 		</div>
-        </form>	
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/login-script.js"></script>
-</div> 
+		<form class="form-inline" method="POST"
+			action="${pageContext.request.contextPath}/login">
+
+			<div class="form-group">
+				<label>User Name</label> <input type="text" class="form-control"
+					placeholder="email id" name="userName">
+			</div>
+			<div class="form-group">
+				<label>Password</label> <input type="password" class="form-control"
+					placeholder="password" name="password">
+			</div>
+			<div>
+				<button type="submit" class="btn btn-success login">Login</button>
+			</div>
+		</form>
+	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/login-script.js"></script>
+
 </body>
 </html>

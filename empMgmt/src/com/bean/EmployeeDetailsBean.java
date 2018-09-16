@@ -1,16 +1,17 @@
 package com.bean;
 
 public class EmployeeDetailsBean {
-	private String id;
+	private int id;
 	private String userName;
 	private String department;
 	private String salary;
 	private String role;
 	
-	public String getId() {
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getUserName() {
@@ -36,6 +37,11 @@ public class EmployeeDetailsBean {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	@Override
+	public String toString() {
+		return "EmployeeDetailsBean [id=" + id + ", userName=" + userName + ", department=" + department + ", salary="
+				+ salary + ", role=" + role + "]";
 	}
 	
 	

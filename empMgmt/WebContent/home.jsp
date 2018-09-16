@@ -44,7 +44,7 @@
      <jsp:include page="menu.jsp"></jsp:include>
       <h1 class="page-header">Home Page</h1>
       
-      <div style="padding: 5px;">
+      <div class="container" style="padding: 5px;">
  
    <a href="${pageContext.request.contextPath}/" class="btn btn-primary" role="button">Home</a>
    
@@ -52,7 +52,7 @@
     
 </div>
  
-     <%-- <jsp:include page="_footer.jsp"></jsp:include> --%>
+<jsp:include page="footer.jsp"></jsp:include>    <%-- <jsp:include page="_footer.jsp"></jsp:include> --%>
  
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

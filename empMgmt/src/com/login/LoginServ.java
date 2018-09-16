@@ -91,7 +91,7 @@ public class LoginServ extends HttpServlet {
 					user.setUserName(userName);
 					
 					//user.setPassword(password);----not a good policy
-					request.setAttribute("userData", user);
+					request.setAttribute("user", user);
 					//response.setContentType("text/plain");
 					//.getWriter().append(responseData);
 					// Invalid user data Forward to login.jsp

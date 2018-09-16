@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpSession;
+
 import com.bean.EmployeeBean;
 import com.bean.EmployeeDetailsBean;
-
-
-
 
 public class commonUtils {
 	public static final String ATT_CONNECTION = "ATTRIBUTE_FOR_CONNECTION";
@@ -41,7 +41,7 @@ public class commonUtils {
     public static EmployeeDetailsBean searchEmployee(Connection conn, String userName) throws SQLException {
 System.out.println(userName);
     	
-    	String sql = "Select userName, department, salary, id from employeeDetails where userName = ?";
+    	String sql = "Select id, userName, department, salary, role from employeedetails where userName =?";
  
         PreparedStatement pstm = conn.prepareStatement(sql);
         pstm.setString(1, userName);
@@ -50,12 +50,56 @@ System.out.println(userName);
         EmployeeDetailsBean employeeDetailsBean =new EmployeeDetailsBean();
         System.out.println("Before Setting Employee Details value");
         while (rs.next()) {
-        	employeeDetailsBean.setUserName("userName");
-        	employeeDetailsBean.setRole("role");
-        	employeeDetailsBean.setSalary("salary");
-        	employeeDetailsBean.setId("id");
+        	employeeDetailsBean.setUserName(rs.getString("userName"));
+        	employeeDetailsBean.setRole(rs.getString("role"));
+        	employeeDetailsBean.setSalary(rs.getString("salary"));
+        	employeeDetailsBean.setId(rs.getInt("id"));
+        	employeeDetailsBean.setDepartment(rs.getString("department"));
         }
-        System.out.println("Set Employee Details");
+        System.out.println("Set Employee Details"+employeeDetailsBean);
         return employeeDetailsBean;
+    }
+    
+    public static EmployeeBean findEmployee(Connection conn, String userName) throws SQLException {
+        String sql = "Select userName, password, loginid from loginuser where userName=?";
+ 
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, userName);
+ 
+        ResultSet rs = pstm.executeQuery();
+ 
+        while (rs.next()) {
+        	EmployeeBean employee = new EmployeeBean();
+            employee.setUserName(rs.getString("userName"));
+            employee.setPassword(rs.getString("password"));//(CryptoghraphyUtil.decrypt(rs.getString("password")));
+            employee.setId(rs.getInt("loginid"));
+            return employee;
+        }
+        return null;
+    }
+    
+    public static List<EmployeeDetailsBean> getEmplList(Connection conn) throws SQLException{
+    	List<EmployeeDetailsBean> list = new ArrayList<>();
+    	
+    	String sql = "Select id, userName, department, salary, role from employeedetails";
+    	 
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        
+ 
+        ResultSet rs = pstm.executeQuery();
+        
+        
+        System.out.println("Before Setting Employee Details value");
+        while (rs.next()) {
+        	EmployeeDetailsBean employeeDetailsBean = new EmployeeDetailsBean();
+        	employeeDetailsBean.setId(rs.getInt("id"));
+        	employeeDetailsBean.setUserName(rs.getString("userName"));
+        	employeeDetailsBean.setRole(rs.getString("role"));
+        	employeeDetailsBean.setSalary(rs.getString("salary"));
+        	employeeDetailsBean.setDepartment(rs.getString("department"));        
+            list.add(employeeDetailsBean);
+        }
+        System.out.println(list);
+        return list;
     }
 }
